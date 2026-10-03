@@ -161,7 +161,7 @@ function resolvePackage(
   const legacyEntry = resolveExports.legacy(pkg, {
     fields: ["module", "main"]
   });
-  if (legacyEntry && typeof legacyEntry === "string") {
+  if (!subpath && legacyEntry && typeof legacyEntry === "string") {
     const fullPath = `node_modules/${packageName}/${normalizeRelativePath(legacyEntry)}`;
     if (files.read(fullPath) !== null) {
       return { path: fullPath, external: false };
